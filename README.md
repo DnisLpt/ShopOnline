@@ -1,5 +1,5 @@
 # ShopOnline
-WebApp project in university adapted to new versions and different DB. __
+WebApp project in university adapted to new versions and different DB.
 
 Adapted to Gradle 6.7.1 to 8.0.2 
 
