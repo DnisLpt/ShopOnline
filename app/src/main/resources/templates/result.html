@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header th:insert="header.html :: nav"></header>
+<h2>Result</h2>
+
+<p>
+    Operação feita com sucesso! <a style="margin-left: 5px" th:href="@{/admin}"> Voltar.</a>
+</p>
+</body>
+</html>

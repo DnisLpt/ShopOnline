@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log in</title>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class = log>
+<div class = text> Please LogIn</div>
+    <form th:action="@{/login}" method="post">
+            <div class=text th:if="${param.error}" >
+                Invalid username and password.
+            </div>
+
+            <div class=text th:if="${param.logout}" >
+                You have been logged out.
+            </div>
+
+            <div class = text>
+                <label for="txtUsername">Username</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        name="username"
+                        placeholder="Username"
+                />
+            </div>
+
+            <div class = text>
+                <label for="txtPassword">Password</label>
+                <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        placeholder="Password"
+                />
+            </div>
+
+            <div class = text>
+                <button type="submit" >Log in</button>
+            </div>
+    </form>
+</body>
+</html>
