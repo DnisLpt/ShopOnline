@@ -13,3 +13,5 @@ Adapted to use application.yml instead of application.properties
 
 
 Main project by: Denis Lapuste, Diogo Rafael.
+
+PS: For MySQL database needs to exist, only tables are automatically created.
