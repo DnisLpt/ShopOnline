@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Requests</title>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header th:insert="header.html :: nav"></header>
+
+<h2 class="text">Compra a efetuar:</h2>
+<div class = "text" style="margin: 30px">
+            <!--<p1  style="margin-right: 10px" th:text="${basket.ProductsInRequest}"></p1>-->
+            <ul style="list-style-type: none;" th:each="Product : ${basket.ProductsInRequest}">
+                <li th:text="${Product.quantity}"></li>
+                <li>-(</li>
+                <li th:text="${Product.productType.name}"></li>
+                <li>-</li>
+                <li th:text="${Product.productType.price}"></li>
+                <li>€)</li>
+            </ul>
+            <b style="margin: 0px 10px">Preço total:</b>
+            <b th:text="${basket.totalPrice}"></b><b style="margin-right: 10px">€</b>
+            <a th:href="@{/request/finishRequest/{requestId}(requestId=${basket.id})}"
+            ><button>Finalizar Compra</button></a>
+</div>
+
+<h2 class="text">Compras Efetuadas:</h2>
+<div class = "bod">
+        <div class="requests">
+        <ul style="list-style-type: none;" th:each="Request : ${pastRequests}">
+            <li>
+                <ul style="list-style-type: none;" th:each="Product : ${Request.ProductsInRequest}">
+                    <li th:text="${Product.quantity}"></li>
+                    <li>-(</li>
+                    <li th:text="${Product.productType.name}"></li>
+                    <li>-</li>
+                    <li th:text="${Product.productType.price}"></li>
+                    <li>€)</li>
+                </ul>
+                <b style="margin: 0px 10px">Preço total:</b>
+                <b th:text="${Request.totalPrice}"></b><b>€</b>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

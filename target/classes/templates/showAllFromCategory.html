@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Category only</title>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header th:insert="header.html :: nav"></header>
+<form sec:authorize="hasAuthority('ADMIN')"
+
+    th:action="@{/productType/add/{categoryid}(categoryid=${category.id})}"
+    th:object="${productType}"
+    method="post"
+    >
+        <div>
+            <div>
+                <p>Adicionar produto</p>
+                <label>Product</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        th:field="*{name}"
+                />
+            </div>
+            <div>
+                <label>Price</label>
+                <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        id="price"
+                        th:field="*{price}"
+                />
+            </div>
+
+            <div>
+                <label>Description</label>
+                <textarea th:field="*{description}" rows = "5" cols = "50" name = "description">
+                Enter description here...
+                </textarea>
+            </div>
+
+            <input type="submit" value="Submit" />
+        </div>
+</form>
+
+<div class = "bod">
+    <div id="categories">
+        <ul style="list-style-type: none;" th:each="Category : ${categories}">
+            <li>
+                <a th:text="${Category.categoryName}" th:href="@{/category/showAllFromCategory/{id}(id=${Category.id})}" ></a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="products">
+        <ul style="list-style-type: none;" th:each="Product : ${products}">
+            <li>
+                <div><img class="img2" src="/images/placeholder.jpg"></div>
+                <p th:text="${Product.name}"></p>
+                <div class ="down"><b th:text="${Product.price}"></b><b1 class = "none">€</b1></div>
+                <div class ="down"><a th:href="@{/productType/productPage/{productid}(productid=${Product.id})}"><button>Sobre o produto</button></a></div>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/category/remove/product/{product}(product=${Product.id})}"><button>Apagar</button></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

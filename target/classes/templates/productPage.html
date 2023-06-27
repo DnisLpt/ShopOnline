@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Product page</title>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header th:insert="header.html :: nav"></header>
+
+<div class="bod">
+    <div><img class="img2" src="/images/placeholder.jpg"></div>
+    <div id="products">
+        <form sec:authorize="hasAuthority('USER')"
+              th:action="@{/product/addToBasket/{producttypeid}(producttypeid=${Product.id})}"
+              th:object="${addThis}"
+              method="post">
+            <label>Adicionar ao Carrinho</label>
+            <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    th:field="*{quantity}"
+            />
+        </form>
+        <p1 th:text="${Product.category.categoryName}"></p1>
+        <div class ="down"><b th:text="${Product.price}"></b><b1 class = "none">€</b1></div>
+        <p1 th:text="${Product.description}"></p1>
+        <p th:text="${Product.name}">:</p>
+    </div>
+</div>
+
+</body>
+</html>

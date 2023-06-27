@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class = "log">
+    <div class = text> Please SignIn</div>
+    <form
+            th:action="@{/uzer/add/}"
+            th:object="${uzer}"
+            method= "post">
+
+        <div class = text>
+            <label for="txtUsername">Username</label>
+            <input
+                    th:field="*{username}"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+            required>
+        </div>
+        <div class = text>
+            <label for="txtPassword">Password</label>
+            <input
+                    th:field="*{password}"
+                    type="password"
+                    placeholder="Password"
+                    id="pass"
+            required>
+        </div>
+        <div class = text>
+            <label>Password</label>
+            <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    id="pass2"
+            required>
+        </div>
+        <div class= text>
+
+            <button type="submit">Confirm</button>
+        </div>
+
+    </form>
+</div>
+    <script>
+        var p = document.getElementById("pass");
+        var p2 = document.getElementById("pass2");
+
+        function valid(){
+          if(p.value != p2.value) {
+            p2.setCustomValidity("Passwords Don't Match");
+          } else {
+            p2.setCustomValidity('');
+          }
+        }
+
+    p.onchange = valid;
+    p2.onkeyup = valid;
+    </script>
+</body>
+</html>

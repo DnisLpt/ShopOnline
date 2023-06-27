@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result</title>
+    <th:block  th:include="header.html :: headerfiles"></th:block>
+    <meta name="viewport"content="width=device-width", initial-scale="1">
+    <link rel="stylesheet" th:href="@{/css/whole.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header th:insert="header.html :: nav"></header>
+<div class = "bod">
+    <div id="categories">
+        <ul style="list-style-type: none;" th:each="Category : ${categories}">
+            <li>
+                <a th:text="${Category.categoryName}" th:href="@{/category/showAllFromCategory/{id}(id=${Category.id})}" ></a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="products">
+        <ul style="list-style-type: none;" th:each="Product : ${search}">
+            <li>
+                <div><img class="img2" src="/images/placeholder.jpg"></div>
+                <p th:text="${Product.name}"></p>
+                <div class ="down"><b th:text="${Product.price}"></b><b1 class = "none">€</b1></div>
+                <div class ="down"><a th:href="@{/productType/productPage/{productid}(productid=${Product.id})}"><button>Sobre o produto</button></a></div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
