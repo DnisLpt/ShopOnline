@@ -26,7 +26,7 @@ public class WebConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/home","/").permitAll()
-                .antMatchers("/admin","/category/add","/productType/add/*").hasAuthority("ADMIN")
+                .antMatchers("/admin","/category/add","/productType/add/*","/uzer/display").hasAuthority("ADMIN")
                 .antMatchers("/request/*","/product/addToBasket/*").hasAuthority("USER")
                 .and()
                 .formLogin()
